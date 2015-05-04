@@ -13,7 +13,7 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
   - [config.json](#configjson)
   - [config.before](#configbefore)
   - [config.error](#configerror)
-  - [config.sockets](#sockets)
+  - [config.sockets](#configsockets)
 
 
 
