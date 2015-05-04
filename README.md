@@ -2,7 +2,7 @@
 
 This service leverages RabbitMQ and generators to create a simple, extensible service for messaging. Functionality is built on top of the [rabbit.js module](http://www.squaremobius.net/rabbit.js/).
 
-*NOTE:* the `--harmony` flag is required
+*NOTE*: the `--harmony` flag is required
 
 - [Usage](#usage)
   - [Standalone](#standalone)
@@ -19,7 +19,7 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
 
 ## Usage
 
-
+*Note*: The `app` object is passed in to each function. by default it contains the context result from the rabbit connect. other things can be attached to it, but remember that the context is shared between controller executions 
 
 ### Standalone
 
