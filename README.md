@@ -19,7 +19,7 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
 
 ## Usage
 
-*Note*: The `app` object is passed in to each function. by default it contains the context result from the rabbit connect. other things can be attached to it, but remember that the context is shared between controller executions 
+*Note*: The `app` object is passed in to each function. by default it contains the context result from the rabbit connect. other things can be attached to it, but remember that the context is shared between controller executions
 
 ### Standalone
 
@@ -153,7 +153,7 @@ config.error = function (error, data, app) {
 
 ### config.sockets
 
-an array of socket configurations. Each socket requires a `channel`, and a `controller`. strings can be passed in to the `controller`, but a `controllers` directory must be passed in to the config. if strings are used, they must be `.` delimited where the first work is the file, and the remaining string denotes the controller property/handler. ([see complex example for more detail]('johnhof/rabbit-service/examples/complex'])).
+an array of socket configurations. Each socket requires a `channel`, and a `controller`. strings can be passed in to the `controller`, but a `controllers` directory must be passed in to the config. if strings are used, they must be `.` delimited where the first work is the file, and the remaining string denotes the controller property/handler. ([see complex example for more detail](johnhof/rabbit-service/examples/complex])).
 
 
 ```javasscript
