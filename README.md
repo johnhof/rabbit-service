@@ -9,11 +9,11 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
   - [Sub-service](#subservice)
 - [Defaults](#defaults)
 - [Configuration](#configuration)
-  - [config.context](configcontext)
-  - [config.json](configjson)
-  - [config.before](configbefore)
-  - [config.error](configerror)
-  - [sockets](sockets)
+  - [config.context](#configcontext)
+  - [config.json](#configjson)
+  - [config.before](#configbefore)
+  - [config.error](#configerror)
+  - [config.sockets](#sockets)
 
 
 
