@@ -1,0 +1,28 @@
+{
+  "name": "rabbit-service",
+  "version": "1.0.0",
+  "description": "A generator based service to simplify messaging with RabitMQ",
+  "main": "/lib/service.js",
+  "engines": {
+    "node": ">=0.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rabbitmq",
+    "rabbit",
+    "messaging",
+    "service"
+  ],
+  "author": "John Hofrichter",
+  "license": "MIT",
+  "dependencies": {
+    "co": "^4.5.4",
+    "lodash": "^3.8.0",
+    "rabbit.js": "^0.4.2"
+  },
+  "devDependencies": {
+    "koa": "^0.20.0"
+  }
+}
