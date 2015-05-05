@@ -149,7 +149,7 @@ config.middleware = function *(json, app, controller) {
 error handler function
 
 ```javascript
-config.error = function (error, data, app) {
+config.error = function *(error, data, app) {
   console.log('ERROR!');
   console.log(error.stack);
 }
