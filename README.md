@@ -11,7 +11,7 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
 - [Configuration](#configuration)
   - [config.context](#configcontext)
   - [config.json](#configjson)
-  - [config.before](#configbefore)
+  - [config.middleware](#configmiddleware)
   - [config.error](#configerror)
   - [config.sockets](#configsockets)
 
@@ -128,15 +128,19 @@ if true, the message will be parsed into json before the controller is called
 config.json = true
 ```
 
-### config.before
+### config.middleware
 
-middleware to run before controller
+middleware to wrap the controller
 
 ```javascript
-config.before = function *(json, app) {
+config.middleware = function *(json, app, controller) {
   app.logJson = function (string) {
     console.log(JSON.stringify(string, null, '  '));
   }
+
+  yield controller;
+
+  console.log('done');
 },
 ```
 
