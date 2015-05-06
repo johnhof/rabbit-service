@@ -174,3 +174,12 @@ config.sockets = [{
 ```
 
 for more detail on the option, look at the [rabbit.js documention](http://www.squaremobius.net/rabbit.js/)
+
+
+## Authors
+
+  - [John Hofrichter](https://github.com/johnhof)
+
+## License
+
+  MIT
