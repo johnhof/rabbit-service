@@ -20,5 +20,9 @@ service({
     channel    : 'test',
     topic      : 'testing.*',
     controller : 'another_test',
+  },{
+    channel    : 'test',
+    topic      : 'testing.*',
+    controller : 'waaaa',
   }]
 })
