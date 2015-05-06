@@ -3,10 +3,14 @@ var service = require('../../lib/service');
 service({
   json        : true,
   controllers : __dirname + '/controllers',
-  before      : function *(json, app) {
+  middleware  : function *(json, app, next) {
     app.log = function (string) {
       console.log(JSON.stringify(string, null, '  '));
     }
+
+    yield next;
+
+    console.log('done');
   },
   sockets    : [{
     channel    : 'test',
