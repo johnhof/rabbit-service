@@ -3,8 +3,8 @@ var service = require('../../lib/service');
 service({
   json        : true,
   controllers : __dirname + '/controllers',
-  middleware  : function *(json, app, next) {
-    app.log = function (string) {
+  middleware  : function *(next) {
+    this.log = function (string) {
       console.log(JSON.stringify(string, null, '  '));
     }
 
