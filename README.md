@@ -19,7 +19,7 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
 
 ## Usage
 
-*Note*: The `app` object is passed in to each function. by default it contains the context result from the rabbit connect. other things can be attached to it, but remember that the context is shared between controller executions
+*Note*: The context of `this` contains message, and the context result from the rabbit connect. other things can be attached to it.
 
 ### Standalone
 
@@ -36,7 +36,7 @@ service.config({
     topic      : 'testing.stuff',
     controller : function *() {
       this.message // unparsed message
-      this.json // message persed to json
+      this.json // message parsed to json
     },
   }
 });
@@ -170,7 +170,7 @@ config.sockets = [{
   options : {
     routing : 'topic'
   },
-  controller : function *(data, app) {}
+  controller : function *() {}
 }]
 ```
 
