@@ -4,9 +4,9 @@ service({
   sockets : [{
     channel    : 'test',
     topic      : 'testing.stuff',
-    controller : function *(data) {
+    controller : function *() {
       console.log('Hello from rabbit!');
-      console.log(data)
+      console.log(this.message)
     }
   }]
 });

@@ -19,7 +19,7 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
 
 ## Usage
 
-*Note*: The `app` object is passed in to each function. by default it contains the context result from the rabbit connect. other things can be attached to it, but remember that the context is shared between controller executions
+*Note*: The context of `this` contains message, and the context result from the rabbit connect. other things can be attached to it.
 
 ### Standalone
 
@@ -34,8 +34,9 @@ service.config({
   sockets : {
     channel    : 'test',
     topic      : 'testing.stuff',
-    controller : function *(json) {
-
+    controller : function *() {
+      this.message // unparsed message
+      this.json // message parsed to json
     },
   }
 });
@@ -83,9 +84,9 @@ service({
   sockets : [{
     channel    : 'test',
     topic      : 'testing.stuff',
-    controller : function *(data) {
+    controller : function *() {
       console.log('Hello from rabbit!');
-      console.log(data)
+      console.log(this.message)
     }
   }]
 });
@@ -122,7 +123,7 @@ config.context = 'amqp://admin:1337HaXoR@127.00.1'
 
 ### config.json
 
-if true, the message will be parsed into json before the controller is called
+if true, the message will be parsed into json before the controller is called. the json can be found in `this.json` with the original message remaining in `this.message`
 
 ```javascript
 config.json = true
@@ -133,8 +134,8 @@ config.json = true
 middleware to wrap the controller
 
 ```javascript
-config.middleware = function *(json, app, controller) {
-  app.logJson = function (string) {
+config.middleware = function *(controller) {
+  this.logJson = function (string) {
     console.log(JSON.stringify(string, null, '  '));
   }
 
@@ -149,7 +150,7 @@ config.middleware = function *(json, app, controller) {
 error handler function
 
 ```javascript
-config.error = function *(error, data, app) {
+config.error = function *(error) {
   console.log('ERROR!');
   console.log(error.stack);
 }
@@ -169,7 +170,7 @@ config.sockets = [{
   options : {
     routing : 'topic'
   },
-  controller : function *(data, app) {}
+  controller : function *() {}
 }]
 ```
 
