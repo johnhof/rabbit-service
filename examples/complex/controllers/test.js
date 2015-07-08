@@ -1,4 +1,5 @@
-exports.stuff = function *(json, app) {
+exports.stuff = function *() {
   console.log('from test.stuff:')
-  app.log(json);
+
+  this.log(this.json);
 }
