@@ -157,7 +157,7 @@ config.error = function *(error, data, app) {
 
 ### config.sockets
 
-an array of socket configurations. Each socket requires a `channel`, and a `controller`. strings can be passed in to the `controller`, but a `controllers` directory must be passed in to the config. if strings are used, they must be `.` delimited where the first work is the file, and the remaining string denotes the controller property/handler. ([see complex example for more detail](https://github.com/johnhof/rabbit-service/tree/master/examples/complex)).
+an array of socket configurations. Each socket requires a `channel`, and a `controller`. strings can be passed in to the `controller`, but a `controllers` directory must be passed in to the config. if strings are used, they must be `.` delimited where the first work is the file, and the remaining string denotes the controller property/handler chain (accepts nested objects). ([see complex example for more detail](https://github.com/johnhof/rabbit-service/tree/master/examples/complex)).
 
 
 ```javasscript
