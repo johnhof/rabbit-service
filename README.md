@@ -31,14 +31,14 @@ var service = require('rabbit-service');
 service.config({
   context : 'amqp://guest:guest@127.00.1',
   json : true,
-  sockets : {
+  sockets : [{
     channel    : 'test',
     topic      : 'testing.stuff',
     controller : function *() {
       this.message // unparsed message
       this.json // message parsed to json
     },
-  }
+  }]
 });
 
 service.launch();
