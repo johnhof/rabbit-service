@@ -3,7 +3,7 @@
   "version": "3.0.1",
   "description": "A generator based service to simplify messaging with RabbitMQ",
   "main": "lib/service.js",
-  "repository" : "https://github.com/johnhof/rabbit-service",
+  "repository": "https://github.com/johnhof/rabbit-service",
   "engines": {
     "node": ">=0.11.0"
   },
@@ -20,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "co": "^4.5.4",
+    "genit": "^1.0.1",
     "lodash": "^3.8.0",
     "rabbit.js": "^0.4.2"
   },
