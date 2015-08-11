@@ -12,10 +12,13 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
   - [config.context](#configcontext)
   - [config.json](#configjson)
   - [config.middleware](#configmiddleware)
-  - [config.error](#configerror)
+  - [config.catch](#configcatch)
   - [config.sockets](#configsockets)
-
-
+  - [config.onConnect](#configonconnect)
+  - [config.reconnect](#configreconnect)
+  - [config.reconnect.startDelay](#configreconnectstartdelay)
+  - [config.reconnect.maxDelay](#configreconnectmaxdelay)
+  - [config.reconnect.catch](#configreconnectcatch)
 
 ## Usage
 
@@ -39,6 +42,8 @@ service.config({
       this.json // message parsed to json
     },
   }]
+}, function *onConnect (config) {
+  console.log('Listening...')
 });
 
 service.launch();
@@ -89,6 +94,8 @@ service({
       console.log(this.message)
     }
   }]
+}, function *onConnect (config) {
+  console.log('Listening...')
 });
 ```
 
@@ -145,12 +152,12 @@ config.middleware = function *(controller) {
 },
 ```
 
-### config.error
+### config.catch
 
 error handler function
 
 ```javascript
-config.error = function *(error) {
+config.catch = function *(error) {
   console.log('ERROR!');
   console.log(error.stack);
 }
@@ -176,6 +183,75 @@ config.sockets = [{
 
 for more detail on the option, look at the [rabbit.js documention](http://www.squaremobius.net/rabbit.js/)
 
+### config.onConnect
+
+Generator function called when the rabbit context is established. Recalled is the connection is dropped and reconnected. can also be passed as the second parameter after the config object
+
+```javascript
+config.onConnect = function *(config) {
+  // this = connection context object
+  console.log('Listening');
+}
+```
+
+### config.reconnect
+
+Used if the service fails to connect to RabbitMQ, or the connection is dropped. Any truthy value will cause the service to automatically reconnect. By default, it will delay 1 second before attempting to reestablish a connection. each consecutive fail will double hte delay before the next attempt, up to a maximum delay (five minutes by default). initial and max delay can be configured, and a catch funtion can be injected to run every time the connection drops, or the reconnection fails.
+
+```javascript
+// start reconnect delay at 1 sec, doubling with each failure up to a max 5 minute delay
+config.reconnect = true;
+
+// start reconnect delay at 1 sec, doubling with each failure up to a max 5 minute delay. function is called on each failure
+config.reconnect = function *(config, count, delay, err) {
+  if (~err.stack.indexOf('Unexpected close')) {
+    console.log('Connection dropped')
+  } else {
+    console.log('Failed to reconnect ' + count + ' times. Retrying after ' + (delay / 1000) + ' seconds...')
+  }
+}
+
+// start reconnect delay at 2 sec, doubling with each failure up to a max 1 minute delay. function is called on each failure
+config.reconnect = {
+  startDelay : 2000, // 2 seconds
+  maxDelay   : 60000, // one minute
+  catch      : function *(config, count, delay, err) {
+    if (~err.stack.indexOf('Unexpected close')) {
+      console.log('Connection dropped')
+    } else {
+      console.log('Failed to reconnect ' + count + ' times. Retrying after ' + (delay / 1000) + ' seconds...')
+    }
+  }
+};
+```
+
+### config.reconnect.startDelay
+
+Initial delay before attempting to reconnect. Defaults to one second.
+
+```javascript
+config.reconnect.startDelay = 5000 // 5 seconds
+```
+
+### config.reconnect.maxDelay
+
+Maximum delay allowed between each reconnection attempt. delay will double on each failure until this delay is reached.
+
+```javascript
+config.reconnect.maxDelay = 60000 // 1 minute
+```
+
+### config.reconnect.catch
+
+```javascript
+fconfit.reconnect.catch = function *(config, count, delay, err) {
+  if (~err.stack.indexOf('Unexpected close')) {
+    console.log('Connection dropped')
+  } else {
+    console.log('Failed to reconnect ' + count + ' times. Retrying after ' + (delay / 1000) + ' seconds...')
+  }
+}
+```
 
 ## Authors
 
