@@ -14,6 +14,7 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
   - [config.middleware](#configmiddleware)
   - [config.error](#configerror)
   - [config.sockets](#configsockets)
+onconnect
 catch
 autoRestart.maxTimeout
 autoRestart.startTimeout
