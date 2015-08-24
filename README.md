@@ -14,6 +14,7 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
   - [config.middleware](#configmiddleware)
   - [config.catch](#configcatch)
   - [config.sockets](#configsockets)
+  - [config.controllers](#configcontrollers)
   - [config.onConnect](#configonconnect)
   - [config.reconnect](#configreconnect)
   - [config.reconnect.startDelay](#configreconnectstartdelay)
@@ -182,6 +183,15 @@ config.sockets = [{
 ```
 
 for more detail on the option, look at the [rabbit.js documention](http://www.squaremobius.net/rabbit.js/)
+
+### config.controllers
+
+Path to controllers directory. If the socket controllers are identified by name (string), this directory is used to map the controller.
+
+
+```javasscript
+config.controllers = __dirname + 'controllers';
+```
 
 ### config.onConnect
 
