@@ -1,0 +1,10 @@
+{
+  "context": {
+    "protocol": "amqp",
+    "username": "guest",
+    "password": "guest",
+    "host": "127.0.0.1",
+    "port": false,
+    "url": false
+  }
+}

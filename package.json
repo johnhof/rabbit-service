@@ -8,7 +8,7 @@
     "node": ">=0.11.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [
     "rabbitmq",
@@ -20,11 +20,13 @@
   "license": "MIT",
   "dependencies": {
     "co": "^4.5.4",
+    "deep-equal": "^1.0.1",
     "genit": "^1.0.1",
     "lodash": "^3.8.0",
     "rabbit.js": "^0.4.2"
   },
   "devDependencies": {
-    "koa": "^0.20.0"
+    "chai": "^3.5.0",
+    "co-mocha": "^1.1.3"
   }
 }
