@@ -20,9 +20,10 @@
   "license": "MIT",
   "dependencies": {
     "co": "^4.5.4",
+    "comise": "^1.0.1",
     "deep-equal": "^1.0.1",
     "genit": "^1.0.1",
-    "lodash": "^3.8.0",
+    "lodash": "^3.10.1",
     "rabbit.js": "^0.4.2"
   },
   "devDependencies": {

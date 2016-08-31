@@ -2,11 +2,7 @@
 
 This service leverages RabbitMQ and generators to create a simple, extensible service for messaging. Functionality is built on top of the [rabbit.js module](http://www.squaremobius.net/rabbit.js/).
 
-*NOTE*: the `--harmony` flag is required
-
 - [Usage](#usage)
-  - [Standalone](#standalone)
-  - [Sub-service](#subservice)
 - [Defaults](#defaults)
 - [Configuration](#configuration)
   - [config.context](#configcontext)
@@ -23,100 +19,72 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
 
 ## Usage
 
-*Note*: The context of `this` contains message, and the context result from the rabbit connect. other things can be attached to it.
-
-### Standalone
-
-
-
 ```javascript
-var service = require('rabbit-service');
+  let Service = require('rabbit-service');
+  let service = Service({
+    username: 'test',
+    password: 'tester'
+  });
 
-service.config({
-  context : 'amqp://guest:guest@127.00.1',
-  json : true,
-  sockets : [{
-    channel    : 'test',
-    topic      : 'testing.stuff',
-    controller : function *() {
-      this.message // unparsed message
-      this.json // message parsed to json
-    },
-  }]
-}, function *onConnect (config) {
-  console.log('Listening...')
-});
+  service.use(function *(next) {
+    yield next;
+  });
 
-service.launch();
-```
+  service.use(function (next) {
+    return new Promise((resolve, reject) => {
+      next().then(resolve).catch(reject);
+    });
+  });
 
-
-### Sub-service
-
-
-*main.js*
-```javascript
-var spawn    = require('child_process').spawn;
-
-console.log('Starting koa...');
-var koaProc = spawn('node', [ '--harmony','./koa_service.js']);
-koaProc.stdout.pipe(process.stdout);
-koaProc.stderr.pipe(process.stderr);
-
-console.log('Starting rabbit...');
-var rabbitProc = spawn('node', [ '--harmony','./rabbit_service.js']);
-rabbitProc.stdout.pipe(process.stdout);
-rabbitProc.stderr.pipe(process.stderr);
-```
-
-*koa_service.js*
-
-```javascript
-var koa = require('koa');
-var app = koa();
-
-app.use(function *() {
-  this.body = 'Hello, World';
-  console.log('Hello from koa!');
-})
-```
-
-*rabbit_service.js*
-
-```javascript
-var service = require('rabbit-service');
-
-service({
-  sockets : [{
-    channel    : 'test',
-    topic      : 'testing.stuff',
-    controller : function *() {
-      console.log('Hello from rabbit!');
-      console.log(this.message)
+  service.socket({
+    topic: 'test_topic_1',
+    controller: function *() {
+      console.log('received message on test_topic_1')
     }
-  }]
-}, function *onConnect (config) {
-  console.log('Listening...')
-});
-```
+  });
+  service.socket({
+    topic: 'test_topic_2',
+    controller: function () {
+      return new Promise((resolve, reject) => {
+        console.log('received message on test_topic_1');
+        resolve();
+      })
+    }
+  });
 
+  service.sockets([{
+      topic: 'test_topic_3',
+      controller: function *() {
+        console.log('received message on test_topic_3')
+      }
+    }, {
+      topic: 'test_topic_4',
+      controller: function () {
+        return new Promise((resolve, reject) => {
+          console.log('received message on test_topic_4');
+          resolve();
+        })
+      }
+    }
+  ]);
+
+  service.catch(function (error) {
+    return new Promise((resolve, reject) => {
+      console.log(error);
+      resolve();
+    });
+  });
+
+  service.listen().then(() => {
+    console.log('Listening...');
+  });
+```
 
 ## Defaults
 
-
-
 The default config is as follows:
 ```javascript
-context  : 'amqp://guest:guest@127.00.1',
-defaults : {
-  listen  : 'data',
-  type    : 'SUB',
-  options : {
-    routing : 'topic'
-  }
-}
 ```
-
 
 ## Configuration
 
