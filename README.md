@@ -85,6 +85,7 @@ co(function *() {
 
 ### Accepts
 
+- Url string to be deconstructed into host connection parameters
 - Configuration object to overwrite the following defaults
 
 ```json
@@ -101,7 +102,6 @@ co(function *() {
     "password": "guest",
     "host": "127.0.0.1",
     "port": false,
-    "url": false
   },
   "socket": {
     "listen": "data",
