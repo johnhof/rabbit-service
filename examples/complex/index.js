@@ -25,11 +25,11 @@ service.use(function *logger (next) {
 
 service.register(CONFIG.sockets);
 
-service.catch(function *(e) {
+service.catch(function *catch (e) {
   console.log('CAUGHT', e.stack);
 });
 
-service.reconnect(function *(data) {
+service.reconnect(function *reconnect (data) {
   if (!data.attempts && !data.alive) console.log('Connection dropped');
   if (data.alive) {
     console.log('Connection recovered');
