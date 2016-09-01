@@ -83,6 +83,13 @@ co(function *() {
 
 ## `rs(config)`
 
+### Example
+
+```javascript
+let rs = require('rabbit-service');
+let service = rs('amqp://myhost.foo.com');
+```
+
 ### Accepts
 
 - Url string to be deconstructed into host connection parameters
