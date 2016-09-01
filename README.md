@@ -8,6 +8,7 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
   - [Complex](https://github.com/johnhof/rabbit-service/tree/refactor/examples/complex)
 - [Documentation](#documentation)
   - **TODO**
+  - [`rs(config)`](#rsconfig)
 
 # Usage
 
@@ -79,6 +80,43 @@ co(function *() {
 # Documentation
 
 ## TODO
+
+## `rs(config)`
+
+### Accepts
+
+- Configuration object to overwrite the following defaults
+
+```json
+{
+  "controllers": null,
+  "reconnect": {
+    "start_delay": 1000,
+    "max_delay": 60000,
+    "multiplier": 2
+  },
+  "context": {
+    "protocol": "amqp",
+    "username": "guest",
+    "password": "guest",
+    "host": "127.0.0.1",
+    "port": false,
+    "url": false
+  },
+  "socket": {
+    "listen": "data",
+    "type": "SUB",
+    "encoding": "utf8",
+    "options": {
+      "routing": "topic"
+    }
+  }
+}˝
+```
+
+### Returns
+
+- Instance of a service
 
 # Authors
 
