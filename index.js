@@ -7,3 +7,6 @@ module.exports = function (config) {
 }
 
 module.exports.DEFAULTS = RabbitService.DEFAULTS;
+module.exports.parsers = {
+  json: require('./lib/parsers/json')
+}

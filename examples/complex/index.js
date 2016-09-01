@@ -7,7 +7,7 @@ const CONFIG = require('./config.json');
 
 let service = rs({ controllers: __dirname + '/controllers' });
 
-// service.use(rs.parsers.json());
+service.use(rs.parsers.json());
 
 service.use(function *messageId (next) {
   this.id = uuid.v4();
@@ -30,7 +30,12 @@ service.catch(function *(e) {
 });
 
 service.reconnect(function *(data) {
-  console.log('reconnecting: attempt(' + data.attempts + '), delay(' + data.delay + ')');
+  if (!data.attempts && !data.alive) console.log('Connection dropped');
+  if (data.alive) {
+    console.log('Connection recovered');
+  } else if (data.attempts) {
+    console.log('Reconnect attempt (' + data.attempts + ') failed after (' + data.delay + ')');
+  }
 });
 
 service.listen()

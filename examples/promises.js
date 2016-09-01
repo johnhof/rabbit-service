@@ -8,6 +8,7 @@ service.use(function (next) {
     console.log('--> 1');
     next().then(() => {
       console.log('<-- 1');
+      resolve()
     });
   });
 });
