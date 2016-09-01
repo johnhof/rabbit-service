@@ -1,6 +1,6 @@
 {
   "name": "rabbit-service",
-  "version": "6.1.0",
+  "version": "7.0.0",
   "description": "A generator based service to simplify messaging with RabbitMQ",
   "main": "index.js",
   "repository": "https://github.com/johnhof/rabbit-service",
