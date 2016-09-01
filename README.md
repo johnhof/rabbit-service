@@ -6,7 +6,7 @@ This service leverages RabbitMQ and generators to create a simple, extensible se
   - [Promises](#promises)
   - [Generators](#generators)
   - [Complex](https://github.com/johnhof/rabbit-service/tree/refactor/examples/complex)
-- [Documentation](#documenation)
+- [Documentation](#documentation)
   - **TODO**
 
 # Usage
