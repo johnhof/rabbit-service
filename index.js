@@ -1,6 +1,6 @@
 'use strict';
 
-let RabbitService = require('./service');
+let RabbitService = require('./lib/service');
 
 module.exports = function (config) {
   return new RabbitService(config);

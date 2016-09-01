@@ -1,5 +1,3 @@
-exports.stuff = function *() {
-  console.log('from test.stuff:')
-
-  this.log(this.json);
+module.exports.stuff = function *() {
+  console.log('    [test.stuff]:' + this.message);
 }

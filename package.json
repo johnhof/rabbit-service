@@ -2,7 +2,7 @@
   "name": "rabbit-service",
   "version": "6.1.0",
   "description": "A generator based service to simplify messaging with RabbitMQ",
-  "main": "lib/service.js",
+  "main": "index.js",
   "repository": "https://github.com/johnhof/rabbit-service",
   "engines": {
     "node": ">=0.11.0"
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "co-mocha": "^1.1.3"
+    "co-mocha": "^1.1.3",
+    "uuid": "^2.0.2"
   }
 }

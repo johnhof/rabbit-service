@@ -1,5 +1,10 @@
 {
   "controllers": null,
+  "reconnect": {
+    "start_delay": 1000,
+    "max_delay": 60000,
+    "multiplier": 2
+  },
   "context": {
     "protocol": "amqp",
     "username": "guest",

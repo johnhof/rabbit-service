@@ -1,7 +1,7 @@
 'use strict';
 
-let Service = require('../lib');
-let service = Service();
+let rs = require('../index');
+let service = rs();
 
 service.use(function (next) {
   return new Promise((resolve, reject) => {
@@ -28,6 +28,7 @@ service.register({
   controller : function () {
     return new Promise((resolve, reject) => {
       console.log('RECIEVED: ', this.message);
+      resolve();
     })
   }
 });

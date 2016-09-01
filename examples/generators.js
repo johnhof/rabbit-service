@@ -1,8 +1,8 @@
 'use strict';
 
 let co = require('co');
-let Service = require('../lib');
-let service = Service();
+let rs = require('../index');
+let service = rs();
 
 co(function *() {
 
@@ -23,7 +23,6 @@ co(function *() {
     topic      : 'testing.stuff',
     controller : function *() {
       console.log('RECIEVED: ', this.message);
-      console.log(this.message);
     }
   });
 
