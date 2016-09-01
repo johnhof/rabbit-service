@@ -9,12 +9,12 @@ let service = rs({ controllers: __dirname + '/controllers' });
 
 service.use(rs.parsers.json());
 
-service.use(function *messageId (next) {
+service.use(function *(next) {
   this.id = uuid.v4();
   yield next();
 });
 
-service.use(function *logger (next) {
+service.use(function *(next) {
   let location = this.socket.channel;
   if (this.socket.topic) location += ':(' + this.socket.topic + ')';
   location += ' [' + this.id + ']'
@@ -25,7 +25,7 @@ service.use(function *logger (next) {
 
 service.register(CONFIG.sockets);
 
-service.catch(function *catch (e) {
+service.catch(function *(e) {
   console.log('CAUGHT', e.stack);
 });
 
