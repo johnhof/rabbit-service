@@ -1,0 +1,13 @@
+{
+  "sockets": [
+    {
+      "channel"    : "test",
+      "topic"      : "testing.stuff",
+      "controller" : "test.stuff"
+    }, {
+      "channel"    : "test",
+      "topic"      : "testing.*",
+      "controller" : "another_test"
+    }
+  ]
+}

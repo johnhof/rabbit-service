@@ -1,4 +1,3 @@
-module.exports = function *(json, app) {
-  console.log('from another_test:')
-  app.log(json);
+module.exports = function *() {
+  console.log('    [test.*]:', this.json);
 }
