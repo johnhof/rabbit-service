@@ -1,7 +1,5 @@
 # rabbit-service
 
-# BROKEN
-
 This service leverages RabbitMQ and generators to create a simple, extensible service for messaging. Functionality is built on top of the [rabbit.js module](http://www.squaremobius.net/rabbit.js/).
 
 - [Usage](#usage)
