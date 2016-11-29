@@ -106,8 +106,8 @@ let service = rs('amqp://myhost.foo.com');
   },
   "context": {
     "protocol": "amqp",
-    "username": "guest",
-    "password": "guest",
+    "user": "guest",
+    "pass": "guest",
     "host": "127.0.0.1",
     "port": false,
   },
